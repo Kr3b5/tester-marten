@@ -21,7 +21,8 @@ builder.Services.AddMarten(opts =>
         .Duplicate(x => x.ContainerName)
         .Duplicate(x => x.Description)
         .Duplicate(x => x.Type);
-});
+})
+    .UseLightweightSessions();
 
 /*
 builder.Services.AddControllers().AddJsonOptions(options =>
@@ -36,6 +37,17 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var store = scope.ServiceProvider.GetRequiredService<IDocumentStore>();
+    await store.Storage.ApplyAllConfiguredChangesToDatabaseAsync();
+
+    // Warm up query system
+    using var session = store.LightweightSession();
+    _ = await session.Query<ContainerBase>().Take(1).ToListAsync(); // JIT + connection + LINQ compilation
+}
+
 
 // app.MapControllers();  
 
