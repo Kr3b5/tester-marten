@@ -7,9 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="FastEndpoints" Version="6.0.0" />
+      <PackageReference Include="FastEndpoints.Swagger" Version="6.0.0" />
       <PackageReference Include="Marten" Version="7.40.3" />
       <PackageReference Include="Marten.AspNetCore" Version="7.40.3" />
       <PackageReference Include="Weasel.Postgresql" Version="7.14.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
 
 </Project>
