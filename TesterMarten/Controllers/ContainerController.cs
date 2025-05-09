@@ -31,12 +31,38 @@ public class ContainerController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, ContainerBase updated)
+    public async Task<IActionResult> Update(int id, [FromBody] ContainerBase updated)
     {
+        // Load with polymorphism (Marten returns actual runtime type)
         var existing = await _session.LoadAsync<ContainerBase>(id);
         if (existing == null) return NotFound();
 
-        _session.Store(updated);
+        Console.WriteLine($"Loaded existing type: {existing.GetType().Name}");
+        Console.WriteLine($"Updated type: {updated.GetType().Name}");
+
+        // Common base fields
+        existing.ContainerName = updated.ContainerName;
+        existing.Description = updated.Description;
+        existing.Type = updated.Type;
+        existing.shortID = updated.shortID;
+        existing.cID = updated.cID;
+
+        // Type-specific fields (CompilerContainer, etc.)
+        if (existing is CompilerContainer compiler && updated is CompilerContainer u1)
+        {
+            compiler.CompilerURL = u1.CompilerURL;
+        }
+        else if (existing is DocumentContainer document && updated is DocumentContainer u2)
+        {
+            document.DocumentId = u2.DocumentId;
+        }
+        else
+        {
+            return BadRequest("Mismatched or unsupported container types.");
+        }
+
+        // Save tracked document
+        _session.Store(existing); 
         await _session.SaveChangesAsync();
         return NoContent();
     }
