@@ -1,13 +1,13 @@
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Marten;
 using TesterMarten.Converters;
 using TesterMarten.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new ContainerBaseJsonConverter());
-});
+builder.Services.AddFastEndpoints()
+    .SwaggerDocument();
 
 builder.Services.AddMarten(opts =>
 {
@@ -23,6 +23,23 @@ builder.Services.AddMarten(opts =>
         .Duplicate(x => x.Type);
 });
 
+/*
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new ContainerBaseJsonConverter());
+});
+*/
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+{
+    options.SerializerOptions.Converters.Add(new ContainerBaseJsonConverter());
+});
+
 var app = builder.Build();
-app.MapControllers();
+
+// app.MapControllers();  
+
+app.UseFastEndpoints()
+    .UseSwaggerGen();
+
 app.Run();
