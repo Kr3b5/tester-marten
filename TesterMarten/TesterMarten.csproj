@@ -12,8 +12,4 @@
       <PackageReference Include="Weasel.Postgresql" Version="7.14.2" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\" />
-    </ItemGroup>
-
 </Project>
