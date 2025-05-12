@@ -45,7 +45,7 @@ using (var scope = app.Services.CreateScope())
 
     // Warm up query system
     using var session = store.LightweightSession();
-    _ = await session.Query<ContainerBase>().Take(1).ToListAsync(); // JIT + connection + LINQ compilation
+    _ = await session.Query<ContainerBase>().Take(1).ToListAsync();
 }
 
 
