@@ -1,0 +1,179 @@
+type: collection.insomnia.rest/5.0
+name: Marten
+meta:
+  id: wrk_e755167d2fc54814ae8a497f335b897b
+  created: 1746783182955
+  modified: 1746783182955
+collection:
+  - url: http://localhost:5257/api/container
+    name: Add Compiler
+    meta:
+      id: req_4cecd81ea45c41c2a8ecacc66fda6a4e
+      created: 1746783190370
+      modified: 1746783760544
+      isPrivate: false
+      sortKey: -1746783190370
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "type": "CompilerContainer",
+            "containerName": "Compiler 1",
+            "description": "Lorem ipsum..",
+            "shortID": "cc01",
+        	  "cid": 1,
+            "compilerUrl": "/test/compiler1"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5257/api/container
+    name: Add Document
+    meta:
+      id: req_34ee69b04c7445e5b67661eeb7cd6633
+      created: 1746783405788
+      modified: 1746794330454
+      isPrivate: false
+      sortKey: -1745703167244.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "type": "DocumentContainer",
+            "containerName": "Document 1",
+            "description": "Lorem ipsum..",
+            "shortID": "dc01",
+        	  "cid": 2,
+            "documentId": "d5f6a847-b630-42ae-a178-3ea3b03a1f67"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5257/api/container
+    name: Get All
+    meta:
+      id: req_4a3b3e7d17f64a5ba2097116a118d6d6
+      created: 1746783482368
+      modified: 1746794336783
+      isPrivate: false
+      sortKey: -1745163155681.75
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5257/api/container/1
+    name: Get By ID
+    meta:
+      id: req_869ccddc674c46d3814540a3cf28a92a
+      created: 1746783509136
+      modified: 1746784160019
+      isPrivate: false
+      sortKey: -1744893149900.375
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5257/api/container/1001
+    name: Update
+    meta:
+      id: req_5328518111914bc8b6a846e147bc7978
+      created: 1746783521316
+      modified: 1746794550827
+      isPrivate: false
+      sortKey: -1744758147009.6875
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "type": "CompilerContainer",
+            "containerName": "Compiler 3",
+            "description": "Lorem ipsum.......",
+            "shortID": "cc01",
+        	  "cid": 1,
+            "compilerUrl": "/test/compiler1"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:5257/api/container/2001
+    name: Delete
+    meta:
+      id: req_dea226924c3942bdaebe4aca3d30aa29
+      created: 1746783562801
+      modified: 1746794696610
+      isPrivate: false
+      sortKey: -1744690645564.3438
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.0.2
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_29b7a632ecc891a9edf87a219224743b7f95eb1f
+    created: 1746783182962
+    modified: 1746783182962
+environments:
+  name: Base Environment
+  meta:
+    id: env_29b7a632ecc891a9edf87a219224743b7f95eb1f
+    created: 1746783182959
+    modified: 1746783182959
+    isPrivate: false
